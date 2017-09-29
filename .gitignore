@@ -43,3 +43,6 @@ android/keystores/debug.keystore
 .deco
 .flowconfig
 .watchmanconfig
+
+# expo
+.expo/
