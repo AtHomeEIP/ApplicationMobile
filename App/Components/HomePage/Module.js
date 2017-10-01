@@ -15,7 +15,6 @@ class Module extends Component {
   render() {
     return (
       <View>
-        
       </View>
     )
   }

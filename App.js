@@ -4,7 +4,8 @@ import {
   Text,
   View,
 } from 'react-native'
-import {Header} from './App/Components/Header.js';
+import Header from './App/Components/Header';
+import Module from "./App/Components/HomePage/Module";
 
 export default class App extends React.Component {
   render() {
@@ -14,15 +15,7 @@ export default class App extends React.Component {
           <Header/>
         </View>
         <View style={{flex: 10}}>
-          <Text
-            style={{
-              color: "rgba(0,0,0,1)",
-              fontSize: 16,
-              fontWeight: 'normal',
-              borderWidth: 2,
-              borderColor: 'rgba(230,24,24,1)',
-              borderRadius: 5,
-            }}>
+          <Text>
             My Text
           </Text>
           <Text>Open up App.js to start working on your app!</Text>
