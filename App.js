@@ -34,7 +34,7 @@ export default class App extends React.Component {
                         <Text>
                             List modules WoodBox
                         </Text>
-                        <ModuleCard/>
+                        <ModuleCard location={"Chambre"} type={"Humidité"}/>
                     </Content>
                 </Container>
             );

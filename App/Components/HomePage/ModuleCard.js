@@ -23,8 +23,8 @@ export default class ModuleCard extends React.Component {
                         <Card>
                             <CardItem>
                                 <Body>
-                                    <Text>Module Room</Text>
-                                    <Text>Module Name</Text>
+                                    <Text>{this.props.location}</Text>
+                                    <Text>{this.props.type}</Text>
                                 </Body>
                                 <Right>
                                     <Icon name='warning' style={{color: 'red', fontSize: 50}}/>
