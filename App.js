@@ -1,36 +1,48 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
   View,
 } from 'react-native'
-import Header from './App/Components/Header';
-import Module from "./App/Components/HomePage/Module";
+
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import ModuleCard from './App/Components/HomePage/ModuleCard'
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <View style={{flex: 1}}>
-          <Header/>
-        </View>
-        <View style={{flex: 10}}>
-          <Text>
-            My Text
-          </Text>
-          <Text>Open up App.js to start working on your app!</Text>
-          <Text>Test</Text>
-        </View>
-      </View>
-    );
-  }
-}
 
-const styles = StyleSheet.create({
-  ShapeTe: {
-    flex: 10,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    state = { fontsAreLoaded: false };
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            'Roboto': require('native-base/Fonts/Roboto.ttf'),
+            'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+            'Ionicons': require('native-base/Fonts/Ionicons.ttf')
+        });
+        this.setState({fontsAreLoaded: true});
+    }
+
+    render() {
+        if (this.state.fontsAreLoaded)
+            return (
+                <Container>
+                    <Header>
+                        <Body>
+                            <Title>WoodBox</Title>
+                        </Body>
+                    </Header>
+                    <Content>
+                        <Text>
+                            List modules WoodBox
+                        </Text>
+                        <ModuleCard/>
+                    </Content>
+                </Container>
+            );
+        else
+            return (
+                <View>
+
+                </View>
+            );
+    }
+}
