@@ -28,7 +28,6 @@ export default class ModulePageGeneralContent extends React.Component {
                     flex: 1
                 }}>
                     <Row style={{
-                        backgroundColor: '#42b7b3',
                         flex: 1,
                         justifyContent: 'center',
                         alignItems: 'center'
@@ -38,7 +37,7 @@ export default class ModulePageGeneralContent extends React.Component {
                         </Text>
                     </Row>
                     <Row style={{
-                        backgroundColor: '#b72791',
+                        backgroundColor: '#77d700',
                         flex: 5,
                         justifyContent: 'center',
                         alignItems: 'center'
@@ -54,28 +53,28 @@ export default class ModulePageGeneralContent extends React.Component {
                             source={require('../../../assets/tileOk.png')}
                         />
                     </Row>
-                    <Row style={{backgroundColor: '#4bb732', justifyContent: 'center', alignItems: 'center', flex: 1}}>
+                    <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
                         <Content>
                             <Button block rounded primary>
                                 <Text>Configuration</Text>
                             </Button>
                         </Content>
                     </Row>
-                    <Row style={{backgroundColor: '#b7231e', justifyContent: 'center', alignItems: 'center', flex: 1}}>
+                    <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
                         <Content>
                             <Button block rounded primary style={{flex: 1}}>
                                 <Text>En savoir plus</Text>
                             </Button>
                         </Content>
                     </Row>
-                    <Row style={{backgroundColor: '#4bb732', justifyContent: 'center', alignItems: 'center', flex: 1}}>
+                    <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
                         <Content>
                             <Button block rounded primary style={{flex: 1}}>
                                 <Text>Données</Text>
                             </Button>
                         </Content>
                     </Row>
-                    <Row style={{backgroundColor: '#b72121', justifyContent: 'center', alignItems: 'center', flex: 1}}>
+                    <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
                         <Content>
                             <Button block rounded primary style={{flex: 1}}>
                                 <Text>Solutions</Text>
