@@ -5,13 +5,53 @@ import {
 } from 'react-native'
 
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import ModuleCard from './App/Components/HomePage/ModuleCard'
-
+import ModuleCard from "./App/Components/HomePage/ModuleCard";
 export default class App extends React.Component {
 
     state = { fontsAreLoaded: false };
 
+    enumState={
+        Warning: 0,
+        Risk: 1,
+        Healthy : 2
+    };
+
+    ModuleList = [
+        {
+            room: 'Living room',
+            type: 'Humidity',
+            state: this.enumState.Warning
+        },
+        {
+            room: 'Living room',
+            type: 'Light',
+            state: this.enumState.Warning
+        },
+        {
+            room: 'Child\'s bedroom',
+            type: 'Humidity',
+            state: this.enumState.Healthy
+        },
+        {
+            room: 'Kitchen',
+            type: 'Light',
+            state: this.enumState.Warning
+        }
+    ];
+
+    BuildStateModuleList(state){
+        let ModuleList = [];
+        for (let i = 0; i < this.ModuleList.length; i++) {
+            if (this.ModuleList[i].state == state) {
+                ModuleList.push(this.ModuleList[i])
+            }
+        }
+        return ModuleList;
+    }
+
+    WarningModuleList = this.BuildStateModuleList(this.enumState.Warning);
+    RiskModuleList = this.BuildStateModuleList(this.enumState.Risk);
+    HealthyModuleList = this.BuildStateModuleList(this.enumState.Healthy);
     async componentWillMount() {
         await Expo.Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -27,14 +67,14 @@ export default class App extends React.Component {
                 <Container>
                     <Header>
                         <Body>
-                            <Title>WoodBox</Title>
+                        <Title>WoodBox</Title>
                         </Body>
                     </Header>
                     <Content>
                         <Text>
                             List modules WoodBox
                         </Text>
-                        <ModuleCard location={"Chambre"} type={"Humidité"}/>
+                        <ModuleCard WarningModules={this.WarningModuleList} RiskModules={this.RiskModuleList} HealthyModules={this.HealthyModuleList}/>
                     </Content>
                 </Container>
             );
