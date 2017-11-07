@@ -19,17 +19,17 @@ export default class ModuleCard extends React.Component {
             <Container>
                 <Content>
                     <Text>Modules ayant détéctés un danger</Text>
-                    <Card dataArray={this.props.WarningModules} renderRow={(module) =>
-                        <CardItem style={styles.card}>
-                            <Body>
-                                <Text>{module.room}</Text>
-                                <Text>{module.type}</Text>
-                            </Body>
-                            <Right>
-                                <Icon name='warning' style={{color: 'red', fontSize: 50}}/>
-                            </Right>
-                        </CardItem>}>
-                    </Card>
+                        <Card dataArray={this.props.WarningModules} renderRow={(module) =>
+                            <CardItem>
+                                <Body>
+                                    <Text>{module.room}</Text>
+                                    <Text>{module.type}</Text>
+                                </Body>
+                                <Right>
+                                    <Icon name='warning' style={{color: 'red', fontSize: 50}}/>
+                                </Right>
+                            </CardItem>}>
+                        </Card>
                     <Text>Modules ayant détéctés un problème</Text>
                     <Card dataArray={this.props.RiskModules} renderRow={(module) =>
                         <CardItem>
@@ -59,9 +59,4 @@ export default class ModuleCard extends React.Component {
       );
     }
 
-    styles = Stylesheet.create({
-        card: {
-            bordered: true
-        },
-    });
 }

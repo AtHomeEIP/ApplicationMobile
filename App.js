@@ -6,6 +6,7 @@ import {
 
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 import ModuleCard from "./App/Components/HomePage/ModuleCard";
+import ModulePage from "./App/Components/ModulePage/ModulePage";
 export default class App extends React.Component {
 
     state = { fontsAreLoaded: false };
@@ -35,7 +36,7 @@ export default class App extends React.Component {
         {
             room: 'Kitchen',
             type: 'Light',
-            state: this.enumState.Warning
+            state: this.enumState.Risk
         }
     ];
 
@@ -75,6 +76,7 @@ export default class App extends React.Component {
                             List modules WoodBox
                         </Text>
                         <ModuleCard WarningModules={this.WarningModuleList} RiskModules={this.RiskModuleList} HealthyModules={this.HealthyModuleList}/>
+                        <ModulePage headerBodyTitle={"title"} room={"room"} mode={1}/>
                     </Content>
                 </Container>
             );
