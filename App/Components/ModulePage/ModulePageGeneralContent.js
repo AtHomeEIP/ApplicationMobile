@@ -5,7 +5,11 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 
 export default class ModulePageGeneralContent extends React.Component {
     state = {
-        fontsAreLoaded: false
+        fontsAreLoaded: false,
+        buttonsList: [{id: 0, text: "Configuration"},
+            {id: 1, text: "En savoir plus"},
+            {id: 2, text:"Données"},
+            {id: 3, text:"Solutions"}]
     };
 
     async componentWillMount() {
@@ -21,6 +25,15 @@ export default class ModulePageGeneralContent extends React.Component {
     }
 
     render() {
+        let buttonListRender = this.state.buttonsList.map(item =>
+            <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+                <Content key={item.text}>
+                    <Button block rounded primary>
+                        <Text>{item.text}</Text>
+                    </Button>
+                </Content>
+            </Row>);
+
         if (this.state.fontsAreLoaded) {
             return (
                 <Grid style={{
@@ -53,34 +66,7 @@ export default class ModulePageGeneralContent extends React.Component {
                             source={require('../../../assets/tileOk.png')}
                         />
                     </Row>
-                    <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-                        <Content>
-                            <Button block rounded primary>
-                                <Text>Configuration</Text>
-                            </Button>
-                        </Content>
-                    </Row>
-                    <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-                        <Content>
-                            <Button block rounded primary style={{flex: 1}}>
-                                <Text>En savoir plus</Text>
-                            </Button>
-                        </Content>
-                    </Row>
-                    <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-                        <Content>
-                            <Button block rounded primary style={{flex: 1}}>
-                                <Text>Données</Text>
-                            </Button>
-                        </Content>
-                    </Row>
-                    <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-                        <Content>
-                            <Button block rounded primary style={{flex: 1}}>
-                                <Text>Solutions</Text>
-                            </Button>
-                        </Content>
-                    </Row>
+                    {buttonListRender}
                 </Grid>
             );
         }
