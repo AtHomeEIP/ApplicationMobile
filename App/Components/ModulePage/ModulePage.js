@@ -3,6 +3,7 @@ import { Image } from 'react-native'
 import { Container, Header, Footer, Content, Card, CardItem, Body, Text, Left, Right, Icon, Badge, Button, Thumbnail, Title} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import ModulePageGeneralContent from './ModulePageGeneralContent'
+import LineChart from "../Charts/LineChart";
 
 
 /**
@@ -31,10 +32,16 @@ export default class ModulePage extends React.Component {
     render () {
         if (this.state.fontsAreLoaded){
             var output;
-            if (this.state.mode == 1)
-                output = <ModulePageGeneralContent headerBodyTitle={this.props.headerBodyTitle} room={this.props.room}/>;
-            else
-                output = <Text>erreur</Text>;
+            switch (this.state.mode) {
+                case 1:
+                    output = <ModulePageGeneralContent headerBodyTitle={this.props.headerBodyTitle} room={this.props.room}/>;
+                    break;
+                case 2:
+                    output = <LineChart/>;
+                    break;
+                default:
+                    output = <Text>erreur</Text>;
+            }
             return (
                 <Container>
                     <Header>
