@@ -26,8 +26,8 @@ export default class ModulePageGeneralContent extends React.Component {
 
     render() {
         let buttonListRender = this.state.buttonsList.map(item =>
-            <Row style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-                <Content key={item.text}>
+            <Row  key={item.id} style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+                <Content>
                     <Button block rounded primary>
                         <Text>{item.text}</Text>
                     </Button>
