@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native'
-import { Container, Header, Footer, Content, Card, CardItem, Body, Text, Left, Right, Icon, Badge, Button, Thumbnail, Title} from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import {Image} from 'react-native'
+import {
+    Container, Header, Footer, Content, Card, CardItem, Body, Text, Left, Right, Icon, Badge, Button, Thumbnail,
+    Title, View
+} from 'native-base';
 import ModulePageGeneralContent from './ModulePageGeneralContent'
 import LineChart from "../Charts/LineChart";
 
-
 /**
- * props: headerBodyTitle, room, mode
+ * props: headerBodyTitle, room, mode, sensorType
  */
 
 // TODO add event handler to child component to update view on button click
@@ -30,14 +31,17 @@ export default class ModulePage extends React.Component {
     }
 
     render () {
-        if (this.state.fontsAreLoaded){
             var output;
             switch (this.state.mode) {
                 case 1:
                     output = <ModulePageGeneralContent headerBodyTitle={this.props.headerBodyTitle} room={this.props.room}/>;
                     break;
                 case 2:
-                    output = <LineChart/>;
+                    output = <View>
+                                <Text>Label 1</Text>
+                                <LineChart/>
+                                <Text style={{textAlign: 'right'}}>Label 2 </Text>
+                            </View>;
                     break;
                 default:
                     output = <Text>erreur</Text>;
@@ -54,11 +58,5 @@ export default class ModulePage extends React.Component {
                     {output}
                 </Container>
             );
-        }
-        return (
-            <Container>
-
-            </Container>
-        );
     }
 }

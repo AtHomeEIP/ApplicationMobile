@@ -76,7 +76,7 @@ export default class App extends React.Component {
                             List modules WoodBox
                         </Text>
                         <ModuleCard WarningModules={this.WarningModuleList} RiskModules={this.RiskModuleList} HealthyModules={this.HealthyModuleList}/>
-                        <ModulePage headerBodyTitle={"title"} room={"room"} mode={1}/>
+                        <ModulePage headerBodyTitle={"title"} room={"room"} mode={2} sensorType={0}/>
                     </Content>
                 </Container>
             );

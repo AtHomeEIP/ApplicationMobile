@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View} from "react-native";
+import {Text, View} from "react-native";
 import {SmoothLine} from "react-native-pathjs-charts";
 
 export default class LineChart extends React.Component{
