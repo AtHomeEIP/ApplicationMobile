@@ -1,4 +1,4 @@
-import {Button, Content, Form, Item, Picker, Text, View} from "native-base";
+import {Button, Content, Form, Icon, Item, Picker, Text, View} from "native-base";
 import LineChart from "../Charts/LineChart";
 import React from "react";
 import {Grid, Row} from "react-native-easy-grid";
@@ -10,10 +10,16 @@ export default class ModulePageLineChart extends React.Component{
         timeFrame: "min"
     };
 
-    onValueChange(value) {
+    onTimeFrameChange(value) {
         this.setState({
             timeFrame:value
         });
+    }
+
+    onTimeBackward(value) {
+    }
+
+    onTimeForward(value) {
     }
 
     render(){
@@ -22,14 +28,22 @@ export default class ModulePageLineChart extends React.Component{
                 <Text>{this.state.labelAxisY}</Text>
                 <LineChart/>
                 <Text style={{textAlign: 'right'}}>{this.state.labelAxisX}</Text>
+                <Row style={{justifyContent:"space-between"}}>
+                    <Button light onPress={this.onTimeBackward(this)}>
+                        <Icon name='arrow-dropleft' />
+                    </Button>
+                    
+                    <Button light onPress={this.onTimeForward(this)}>
+                        <Icon name='arrow-dropright' />
+                    </Button>
+                </Row>
                 <Text>{"période choisie"}</Text>
                 <Form>
                     <Picker
                         iosHeader="Sélectionner période"
                         mode="dropdown"
                         selectedValue={this.state.timeFrame}
-                        onValueChange={this.onValueChange.bind(this)}
-                        style={{backgroundColor: '#fff717' }}
+                        onValueChange={this.onTimeFrameChange.bind(this)}
                     >
                         <Item label="Minutes" value="min" />
                         <Item label="Heures" value="hour" />
