@@ -6,6 +6,7 @@ import {
 } from 'native-base';
 import ModulePageGeneralContent from './ModulePageGeneralContent'
 import LineChart from "../Charts/LineChart";
+import ModulePageLineChart from "./ModulePageLineChart";
 
 /**
  * props: headerBodyTitle, room, mode, sensorType
@@ -37,11 +38,7 @@ export default class ModulePage extends React.Component {
                     output = <ModulePageGeneralContent headerBodyTitle={this.props.headerBodyTitle} room={this.props.room}/>;
                     break;
                 case 2:
-                    output = <View>
-                                <Text>Label 1</Text>
-                                <LineChart/>
-                                <Text style={{textAlign: 'right'}}>Label 2 </Text>
-                            </View>;
+                    output = <ModulePageLineChart labelAxisY={"Data"} labelAxisX={"Time"}/>;
                     break;
                 default:
                     output = <Text>erreur</Text>;
