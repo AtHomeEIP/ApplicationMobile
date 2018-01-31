@@ -4,6 +4,7 @@ import {
     Container, Header, Footer, Content, Card, CardItem, Body, Text, Left, Right, Icon, Badge, Button, Thumbnail,
     Title, View
 } from 'native-base';
+
 import ModulePageGeneralContent from './ModulePageGeneralContent'
 import LineChart from "../Charts/LineChart";
 import ModulePageLineChart from "./ModulePageLineChart";
@@ -14,6 +15,10 @@ import ModulePageLineChart from "./ModulePageLineChart";
 
 // TODO add event handler to child component to update view on button click
 export default class ModulePage extends React.Component {
+
+    static navigationOptions = {
+        title: 'Module'
+    };
 
     state = {
         fontsAreLoaded: false
