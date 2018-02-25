@@ -60,6 +60,10 @@ export default class HomePage extends React.Component {
                     <Card dataArray={this.ModuleList} renderRow={(Module) =>
                         <ModuleCard Module={Module} Navigate={navigate}/>}>
                     </Card>
+                    <Button
+                        onPress={() => navigate('TestApollo')}
+                        title= 'Test Apollo'
+                    />
                 </Content>
             </Container>
         );
