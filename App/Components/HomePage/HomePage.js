@@ -13,7 +13,12 @@ import {HttpLink} from "apollo-link-http/lib/index";
 class ModuleCard extends React.Component {
     render () {
         return (
-            <CardItem button onPress={() => this.props.navigate('Module')}>
+            <CardItem button onPress={() => this.props.navigate('Module', {
+                headerBodyTitle: this.props.module.name,
+                room: this.props.module.room,
+                mode: 2,
+                sensorType: this.props.module.type
+            })}>
                 <Body>
                 <Text>{this.props.module.name}</Text>
                 <Text>{this.props.module.type}</Text>
@@ -79,20 +84,13 @@ export default class HomePage extends React.Component {
     }
 
     async componentWillMount() {
-        await Expo.Font.loadAsync({
-        });
-
-        this.setState({
-            fontsAreLoaded: true,
-        });
-
         this.getModules();
     }
 
     render () {
         const { navigate } = this.props.navigation;
 
-        if (this.state.modulesLoaded === false || this.state.fontsAreLoaded === false){
+        if (this.state.modulesLoaded === false){
             return (
                 <Expo.AppLoading/>
             );
@@ -103,15 +101,17 @@ export default class HomePage extends React.Component {
                     Test Apollo
                 </Text>
 
-                {console.log("Modules list before setup")}
-                {console.log(this.modules)}
                 <Card dataArray={this.modules} renderRow={(module) =>
                     <ModuleCard module={module} navigate={navigate}/> }>
                 </Card>
 
-                <Button
-                    onPress={() => console.log(this.modules)}
-                    title='Refresh'
+                <button
+                    onPress={()=>{
+                        navigate('TestApollo', {
+                            test: "test"
+                        })
+                    }}
+                    title='Test Props'
                 />
             </Container>
         );
