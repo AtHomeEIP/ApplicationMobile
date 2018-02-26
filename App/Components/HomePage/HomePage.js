@@ -99,21 +99,9 @@ export default class HomePage extends React.Component {
         }
         return (
             <Container>
-                <Text>
-                    Test Apollo
-                </Text>
-                <Button
-                    title='Test Props on navigation'
-                    onPress={()=>{
-                        navigate('TestApollo', {
-                            Test: 'Test'
-                        })
-                    }}
-                />
                 <Card dataArray={this.modules} renderRow={(module) =>
                     <ModuleCard module={module} navigate={navigate}/> }>
                 </Card>
-
             </Container>
         );
     }
