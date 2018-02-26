@@ -3,6 +3,7 @@ import { StackNavigator} from 'react-navigation';
 
 import HomePage from './App/Components/HomePage/HomePage';
 import ModulePage from './App/Components/ModulePage/ModulePage';
+import TestApollo from './App/Components/ModulePage/TestApollo';
 
 /*import { StyleSheet, View, Text } from 'react-native';
 class HomePage extends React.Component {
@@ -20,7 +21,8 @@ class HomePage extends React.Component {
 
 const AtHomeScreens = StackNavigator({
     Home: { screen: HomePage },
-    Module: { screen: ModulePage }
+    Module: { screen: ModulePage },
+    TestApollo: {screen: TestApollo }
 });
 
 export default class App extends React.Component {

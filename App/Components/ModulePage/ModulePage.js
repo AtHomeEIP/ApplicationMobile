@@ -16,6 +16,13 @@ import ModulePageLineChart from "./ModulePageLineChart";
 // TODO add event handler to child component to update view on button click
 export default class ModulePage extends React.Component {
 
+    constructor(props){
+        super(props);
+
+        //Way to get props from navigator
+        this.navigationProps = this.props.navigation.state.params;
+    }
+
     static navigationOptions = {
         title: 'Module'
     };
@@ -32,7 +39,7 @@ export default class ModulePage extends React.Component {
         });
         this.setState({
             fontsAreLoaded: true,
-            mode: this.props.mode
+            mode: this.navigationProps.mode
         });
     }
 
@@ -40,7 +47,7 @@ export default class ModulePage extends React.Component {
             var output;
             switch (this.state.mode) {
                 case 1:
-                    output = <ModulePageGeneralContent headerBodyTitle={this.props.headerBodyTitle} room={this.props.room}/>;
+                    output = <ModulePageGeneralContent headerBodyTitle={this.navigationProps.headerBodyTitle} room={this.navigationProps.room}/>;
                     break;
                 case 2:
                     output = <ModulePageLineChart labelAxisY={"Data"} labelAxisX={"Time"}/>;
@@ -53,7 +60,7 @@ export default class ModulePage extends React.Component {
                     <Header>
                         <Body>
                         <Title>
-                            {this.props.headerBodyTitle}
+                            {this.navigationProps.headerBodyTitle}
                         </Title>
                         </Body>
                     </Header>
