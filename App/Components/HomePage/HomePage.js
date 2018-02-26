@@ -16,7 +16,7 @@ class ModuleCard extends React.Component {
             <CardItem button onPress={() => this.props.navigate('Module', {
                 headerBodyTitle: this.props.module.name,
                 room: this.props.module.room,
-                mode: 2,
+                mode: 1,
                 sensorType: this.props.module.type
             })}>
                 <Body>
@@ -69,6 +69,8 @@ export default class HomePage extends React.Component {
         }).then(data => {
             allModules = data.data.allModules;
 
+            console.log('Debug getAllModules Request');
+            console.log(allModules);
             for (i = 0; i < allModules.length; i++) {
                 this.modules[i] = {
                     name: allModules[i].name,
@@ -100,19 +102,18 @@ export default class HomePage extends React.Component {
                 <Text>
                     Test Apollo
                 </Text>
-
+                <Button
+                    title='Test Props on navigation'
+                    onPress={()=>{
+                        navigate('TestApollo', {
+                            Test: 'Test'
+                        })
+                    }}
+                />
                 <Card dataArray={this.modules} renderRow={(module) =>
                     <ModuleCard module={module} navigate={navigate}/> }>
                 </Card>
 
-                <button
-                    onPress={()=>{
-                        navigate('TestApollo', {
-                            test: "test"
-                        })
-                    }}
-                    title='Test Props'
-                />
             </Container>
         );
     }
