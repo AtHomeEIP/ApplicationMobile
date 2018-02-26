@@ -2,6 +2,10 @@ import React from 'react';
 import { StyleSheet, View, Button } from 'react-native'
 
 import { Container, Header, Footer, Content, Card, CardItem, Body, Text, Left, Right, Icon, Badge } from 'native-base';
+import {InMemoryCache} from "apollo-cache-inmemory/lib/index";
+import {ApolloClient} from "apollo-client/index";
+import gql from "graphql-tag";
+import {HttpLink} from "apollo-link-http/lib/index";
 
 //import ModuleCard from './ModuleCard'
 
@@ -9,13 +13,13 @@ import { Container, Header, Footer, Content, Card, CardItem, Body, Text, Left, R
 class ModuleCard extends React.Component {
     render () {
         return (
-            <CardItem button onPress={() => this.props.Navigate('Module')}>
+            <CardItem button onPress={() => this.props.navigate('Module')}>
                 <Body>
-                <Text>{this.props.Module.room}</Text>
-                <Text>{this.props.Module.type}</Text>
+                <Text>{this.props.module.name}</Text>
+                <Text>{this.props.module.type}</Text>
                 </Body>
                 <Right>
-                    <Text>State</Text>
+                    <Text>{this.props.module.location}</Text>
                 </Right>
             </CardItem>
         );
@@ -28,53 +32,88 @@ export default class HomePage extends React.Component {
         title: 'AtHome'
     };
 
-    ModuleList = [
-        {
-            room: 'Living room',
-            type: 'Humidity',
-        },
-        {
-            room: 'Living room',
-            type: 'Light',
-        },
-        {
-            room: 'Child\'s bedroom',
-            type: 'Humidity',
-        },
-        {
-            room: 'Kitchen',
-            type: 'Light',
-        }
-    ];
+    modules = [];
+
+    state = {
+        modulesLoaded: false
+    };
 
 
-    render() {
+    constructor(props){
+        super(props);
+
+    }
+
+    getModules() {
+        client = new ApolloClient({
+            link: new HttpLink({ uri: 'http://lferry.xyz:8080/graphql' }),
+            cache: new InMemoryCache()
+        });
+
+        client.query({
+            query: gql`
+                query getAllModules {
+                    allModules {
+                        id: id,
+                        name: name,
+                        type: type,
+                        location: location
+                    }
+                }
+            `,
+        }).then(data => {
+            allModules = data.data.allModules;
+
+            for (i = 0; i < allModules.length; i++) {
+                this.modules[i] = {
+                    name: allModules[i].name,
+                    type: allModules[i].type,
+                    location: allModules[i].location
+                }
+            }
+            this.setState({
+                modulesLoaded: true
+            });
+        })
+            .catch(error => console.log(error))
+    }
+
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+        });
+
+        this.setState({
+            fontsAreLoaded: true,
+        });
+
+        this.getModules();
+    }
+
+    render () {
         const { navigate } = this.props.navigation;
 
+        if (this.state.modulesLoaded === false || this.state.fontsAreLoaded === false){
+            return (
+                <Expo.AppLoading/>
+            );
+        }
         return (
             <Container>
-                <Content>
-                    <Text>
-                        List modules WoodBox
-                    </Text>
-                    <Card dataArray={this.ModuleList} renderRow={(Module) =>
-                        <ModuleCard Module={Module} Navigate={navigate}/>}>
-                    </Card>
-                    <Button
-                        onPress={() => navigate('TestApollo')}
-                        title= 'Test Apollo'
-                    />
-                </Content>
+                <Text>
+                    Test Apollo
+                </Text>
+
+                {console.log("Modules list before setup")}
+                {console.log(this.modules)}
+                <Card dataArray={this.modules} renderRow={(module) =>
+                    <ModuleCard module={module} navigate={navigate}/> }>
+                </Card>
+
+                <Button
+                    onPress={() => console.log(this.modules)}
+                    title='Refresh'
+                />
             </Container>
         );
     }
-
-    /*render() {
-        const { navigate } = this.props.navigation;
-        return (
-            <Button
-                onPress= {() => navigate('Module')}
-                title= 'Module'/>
-        );
-    }*/
 }
